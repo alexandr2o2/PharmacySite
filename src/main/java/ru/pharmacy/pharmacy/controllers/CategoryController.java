@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CategoryController {
-    @GetMapping("/category/1")
+    @GetMapping("/category")
     public String loadCategory1(Model model){
 
         return "";
