@@ -1,4 +1,4 @@
-package ru.pharmacy.pharmacy.models;
+package ru.pharmacy.pharmacy.entiteis;
 
 
 import javax.persistence.*;

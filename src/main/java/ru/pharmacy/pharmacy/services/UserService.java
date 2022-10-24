@@ -4,12 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.pharmacy.pharmacy.models.Role;
-import ru.pharmacy.pharmacy.models.User;
+import ru.pharmacy.pharmacy.entiteis.Role;
+import ru.pharmacy.pharmacy.entiteis.User;
 import ru.pharmacy.pharmacy.repositorys.RoleRepository;
 import ru.pharmacy.pharmacy.repositorys.UserRepository;
 
@@ -35,7 +34,7 @@ public class UserService implements UserDetailsService {
             PasswordEncoderFactories.createDelegatingPasswordEncoder();
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByName(username);
 
         if (user == null){
             throw new UsernameNotFoundException("User no found lol :>");
@@ -52,7 +51,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
     public boolean saveUser(User user) {
-        User userFromDB = userRepository.findByUsername(user.getName());
+        User userFromDB = userRepository.findByName(user.getName());
 
         if (userFromDB != null) {
             return false;

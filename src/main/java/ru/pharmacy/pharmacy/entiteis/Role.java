@@ -1,4 +1,4 @@
-package ru.pharmacy.pharmacy.models;
+package ru.pharmacy.pharmacy.entiteis;
 
 
 import org.springframework.security.core.GrantedAuthority;
@@ -15,7 +15,7 @@ public class Role implements GrantedAuthority {
     private Long id;
     private String name;
     @Transient
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "role")
     private Set<User> users;
 
     public Role() {

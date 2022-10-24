@@ -1,7 +1,7 @@
 package ru.pharmacy.pharmacy.services;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.pharmacy.pharmacy.models.Medicine;
+import ru.pharmacy.pharmacy.entiteis.Medicine;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package ru.pharmacy.pharmacy.models;
+package ru.pharmacy.pharmacy.entiteis;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +18,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private Boolean deleted;
+    private String login;
 
     @ManyToMany
     private Set<Role> role;
@@ -25,13 +26,14 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long id, String name, String surname, String email, String password, Boolean deleted, Set<Role> role) {
+    public User(Long id, String name, String surname, String email, String password, Boolean deleted, String login, Set<Role> role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.deleted = deleted;
+        this.login = login;
         this.role = role;
     }
 
@@ -123,5 +125,13 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> role_user) {
 
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 }
