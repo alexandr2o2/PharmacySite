@@ -30,9 +30,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
-                .title("Custom Title")
-                .description("Custom Description")
-                .version("1.0.0")
+                .title("Pharmacy")
+                .description("Pharmacy web service")
+                .version("0.0.1")
                 .build();
     }
 

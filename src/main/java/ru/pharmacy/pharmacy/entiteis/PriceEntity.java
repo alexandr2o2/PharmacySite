@@ -7,10 +7,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "price", schema = "public", catalog = "Pharmacy")
 public class PriceEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
     @Basic
     @Column(name = "time", nullable = false)
     private Time time;
@@ -21,11 +21,11 @@ public class PriceEntity {
     @Column(name = "medicine_id", nullable = false)
     private int medicineId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

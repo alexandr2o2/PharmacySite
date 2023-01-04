@@ -15,10 +15,11 @@ public class ManufacturerEntity {
     @Basic
     @Column(name = "email", nullable = false, length = -1)
     private String email;
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
 
     public String getName() {
         return name;
@@ -44,11 +45,11 @@ public class ManufacturerEntity {
         this.email = email;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

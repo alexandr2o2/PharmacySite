@@ -15,10 +15,10 @@ public class MedicineСatalogEntity {
     @Basic
     @Column(name = "name", nullable = true, length = -1)
     private String name;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     @Column(name = "medicine_id", nullable = false)
-    private int medicineId;
+    private Long medicineId;
     @Basic
     @Column(name = "price_id", nullable = false)
     private int priceId;
@@ -47,11 +47,11 @@ public class MedicineСatalogEntity {
         this.name = name;
     }
 
-    public int getMedicineId() {
+    public Long getMedicineId() {
         return medicineId;
     }
 
-    public void setMedicineId(int medicineId) {
+    public void setMedicineId(Long medicineId) {
         this.medicineId = medicineId;
     }
 

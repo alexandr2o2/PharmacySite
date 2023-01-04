@@ -6,10 +6,11 @@ import java.util.Objects;
 @Entity
 @Table(name = "category", schema = "public", catalog = "Pharmacy")
 public class CategoryEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
     @Basic
     @Column(name = "name", nullable = false, length = -1)
     private String name;
@@ -17,11 +18,11 @@ public class CategoryEntity {
     @Column(name = "deleted", nullable = false)
     private boolean deleted;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,11 +47,11 @@ public class CategoryEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CategoryEntity that = (CategoryEntity) o;
-        return id == that.id && deleted == that.deleted && Objects.equals(name, that.name);
+        return getId() == that.getId() && deleted == that.deleted && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, deleted);
+        return Objects.hash(getId(), name, deleted);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.pharmacy.pharmacy.entiteis.Role;
 import ru.pharmacy.pharmacy.entiteis.User;
+import ru.pharmacy.pharmacy.entiteis.UserEntity;
 import ru.pharmacy.pharmacy.repositorys.RoleRepository;
 import ru.pharmacy.pharmacy.repositorys.UserRepository;
 
@@ -34,30 +35,30 @@ public class UserService implements UserDetailsService {
             PasswordEncoderFactories.createDelegatingPasswordEncoder();
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByName(username);
+        UserEntity user = userRepository.findByName(username);
 
         if (user == null){
-            throw new UsernameNotFoundException("User no found lol :>");
+            throw new UsernameNotFoundException("User not found lol :>");
         }
         return user;
     }
 
-    public User  findUserById(Long userId){
-        Optional<User> userFromDb = userRepository.findById(userId);
-        return userFromDb.orElse(new User());
+    public UserEntity  findUserById(Long userId){
+        Optional<UserEntity> userFromDb = userRepository.findById(userId);
+        return userFromDb.orElse(new UserEntity());
     }
 
-    public List<User> allUsers(){
+    public List<UserEntity> allUsers(){
         return userRepository.findAll();
     }
-    public boolean saveUser(User user) {
-        User userFromDB = userRepository.findByName(user.getName());
+    public boolean saveUser(UserEntity user) {
+        UserEntity userFromDB = userRepository.findByName(user.getName());
 
         if (userFromDB != null) {
             return false;
         }
 
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        user.setRole(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
