@@ -1,4 +1,4 @@
-package ru.pharmacy.pharmacy.repositorys;
+package ru.pharmacy.pharmacy.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.pharmacy.pharmacy.entiteis.RoleEntity;

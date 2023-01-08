@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.pharmacy.pharmacy.entiteis.ManufacturerEntity;
-import ru.pharmacy.pharmacy.repositorys.ManufacturerRepo;
+import ru.pharmacy.pharmacy.repositories.ManufacturerRepository;
 
 import java.util.Formatter;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 public class ManufacturerController {
 
     @Autowired
-    ManufacturerRepo manufacturerRepo;
+    ManufacturerRepository manufacturerRepository;
 
     @Autowired
     @Qualifier("loggerBean")
@@ -27,7 +27,7 @@ public class ManufacturerController {
     public String addManufacturer(Model model, @RequestBody ManufacturerEntity manufacturer){
 
         manufacturer.setId(null);
-        manufacturerRepo.save(manufacturer);
+        manufacturerRepository.save(manufacturer);
         Formatter f = new Formatter();
         f.format("Добалена запись в БД произвлдителей, название \"%s\"", manufacturer.getName());
         logger.info(f.toString());
@@ -37,7 +37,7 @@ public class ManufacturerController {
 
     @GetMapping("/find/manufacturers")
     public List fingManufacturer(Model model, @RequestParam(value = "name") String name){
-        List<ManufacturerEntity> m = manufacturerRepo.findAllByName(name);
+        List<ManufacturerEntity> m = manufacturerRepository.findAllByName(name);
         logger.info("Запрос на поиск производителей выполнен");
         return m;
     }

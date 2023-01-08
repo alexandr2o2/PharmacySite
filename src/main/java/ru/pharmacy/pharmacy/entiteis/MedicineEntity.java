@@ -1,8 +1,5 @@
 package ru.pharmacy.pharmacy.entiteis;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import ru.pharmacy.pharmacy.repositorys.CategoryRepository;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -11,8 +8,9 @@ import java.util.Set;
 @Entity
 @Table(name = "medicine", schema = "public", catalog = "Pharmacy")
 public class MedicineEntity {
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
+    @SequenceGenerator(name = "id_seq", sequenceName = "medicine_id_seq",allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Long id;
     @Basic
@@ -25,7 +23,7 @@ public class MedicineEntity {
     @Column(name = "deleted", nullable = false)
     private boolean deleted;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinTable(name = "med_cat",
             joinColumns = { @JoinColumn(name = "medicine_id") },
             inverseJoinColumns = { @JoinColumn(name = "category_id") })
@@ -42,6 +40,11 @@ public class MedicineEntity {
         this.categoryEntities = categoryEntities;
     }
 
+    public void setCatIdToNull(){
+        for (CategoryEntity en : categoryEntities){
+            en.setId(null);
+        }
+    }
 
     public Long getId() {
         return id;

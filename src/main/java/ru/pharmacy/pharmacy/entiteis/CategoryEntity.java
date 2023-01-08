@@ -7,7 +7,8 @@ import java.util.Objects;
 @Table(name = "category", schema = "public", catalog = "Pharmacy")
 public class CategoryEntity {
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "category_id_seq",allocationSize = 1)
     @Id
     @Column(name = "id", nullable = false)
     private Long id;

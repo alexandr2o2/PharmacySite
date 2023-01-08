@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import ru.pharmacy.pharmacy.entiteis.Role;
 import ru.pharmacy.pharmacy.entiteis.User;
 import ru.pharmacy.pharmacy.entiteis.UserEntity;
-import ru.pharmacy.pharmacy.repositorys.RoleRepository;
-import ru.pharmacy.pharmacy.repositorys.UserRepository;
+import ru.pharmacy.pharmacy.repositories.RoleRepository;
+import ru.pharmacy.pharmacy.repositories.UserRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
